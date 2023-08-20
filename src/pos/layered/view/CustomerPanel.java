@@ -482,7 +482,7 @@ public class CustomerPanel extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(this, "Customer Not Found");
             }
         } catch (Exception ex) {
-            Logger.getLogger(CustomerView.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(LayoutView.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(this, ex.getMessage());
         }
     }

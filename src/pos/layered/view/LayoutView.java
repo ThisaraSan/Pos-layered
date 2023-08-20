@@ -8,12 +8,12 @@ package pos.layered.view;
  *
  * @author Dell
  */
-public class CustomerView extends javax.swing.JFrame {
+public class LayoutView extends javax.swing.JFrame {
 
     /**
      * Creates new form CustomerView
      */
-    public CustomerView() {
+    public LayoutView() {
         initComponents();
     }
 
@@ -30,6 +30,7 @@ public class CustomerView extends javax.swing.JFrame {
         headerLabel = new javax.swing.JLabel();
         saideNavPanel = new javax.swing.JPanel();
         manageCustomerButton = new javax.swing.JButton();
+        manageItemButton = new javax.swing.JButton();
         bodyPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -64,28 +65,41 @@ public class CustomerView extends javax.swing.JFrame {
             }
         });
 
+        manageItemButton.setBackground(new java.awt.Color(204, 204, 255));
+        manageItemButton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        manageItemButton.setText("Manage Item");
+        manageItemButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                manageItemButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout saideNavPanelLayout = new javax.swing.GroupLayout(saideNavPanel);
         saideNavPanel.setLayout(saideNavPanelLayout);
         saideNavPanelLayout.setHorizontalGroup(
             saideNavPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(saideNavPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(manageCustomerButton)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(saideNavPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(manageCustomerButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(manageItemButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
         saideNavPanelLayout.setVerticalGroup(
             saideNavPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(saideNavPanelLayout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addComponent(manageCustomerButton)
-                .addContainerGap(418, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(manageItemButton)
+                .addContainerGap(389, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout bodyPanelLayout = new javax.swing.GroupLayout(bodyPanel);
         bodyPanel.setLayout(bodyPanelLayout);
         bodyPanelLayout.setHorizontalGroup(
             bodyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 670, Short.MAX_VALUE)
+            .addGap(0, 660, Short.MAX_VALUE)
         );
         bodyPanelLayout.setVerticalGroup(
             bodyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -119,6 +133,10 @@ public class CustomerView extends javax.swing.JFrame {
         loadCustomerPanel();
     }//GEN-LAST:event_manageCustomerButtonActionPerformed
 
+    private void manageItemButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageItemButtonActionPerformed
+        loadItemPanel();
+    }//GEN-LAST:event_manageItemButtonActionPerformed
+
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -126,6 +144,7 @@ public class CustomerView extends javax.swing.JFrame {
     private javax.swing.JLabel headerLabel;
     private javax.swing.JPanel headerPanel;
     private javax.swing.JButton manageCustomerButton;
+    private javax.swing.JButton manageItemButton;
     private javax.swing.JPanel saideNavPanel;
     // End of variables declaration//GEN-END:variables
 
@@ -134,6 +153,15 @@ public class CustomerView extends javax.swing.JFrame {
         bodyPanel.removeAll();
         customerPanel.setSize(bodyPanel.getWidth(), bodyPanel.getHeight());
         bodyPanel.add(customerPanel);
+        bodyPanel.repaint();
+        bodyPanel.validate();
+    }
+
+    private void loadItemPanel() {
+        ItemPanel itemPanel = new ItemPanel();
+        bodyPanel.removeAll();
+        itemPanel.setSize(bodyPanel.getWidth(), bodyPanel.getHeight());
+        bodyPanel.add(itemPanel);
         bodyPanel.repaint();
         bodyPanel.validate();
     }
