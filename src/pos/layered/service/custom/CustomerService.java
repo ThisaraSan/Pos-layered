@@ -4,6 +4,7 @@
  */
 package pos.layered.service.custom;
 
+import java.util.ArrayList;
 import pos.layered.dto.CustomerDto;
 import pos.layered.service.SuperService;
 
@@ -11,6 +12,15 @@ import pos.layered.service.SuperService;
  *
  * @author Dell
  */
-public interface CustomerService extends SuperService{
-    public String addCustomer(CustomerDto customerDto) throws Exception;
+public interface CustomerService extends SuperService {
+
+    String addCustomer(CustomerDto customerDto) throws Exception;
+
+    String updateCustomer(CustomerDto customerDto) throws Exception;
+
+    String deleteCustomer(String id) throws Exception;
+
+    CustomerDto getCustomer(String id) throws Exception;
+
+    ArrayList<CustomerDto> getAllCustomers() throws Exception;
 }

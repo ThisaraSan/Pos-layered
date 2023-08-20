@@ -4,6 +4,7 @@
  */
 package pos.layered.controller;
 
+import java.util.ArrayList;
 import pos.layered.dto.CustomerDto;
 import pos.layered.service.ServiceFactory;
 import pos.layered.service.custom.CustomerService;
@@ -18,6 +19,10 @@ public class CustomerController {
     CustomerService customerService = (CustomerService) ServiceFactory.getInstance().getService(ServiceFactory.ServiceType.CUSTOMER);
     public String addCustomer(CustomerDto customerDto) throws Exception {
         return customerService.addCustomer(customerDto);
+    }
+
+    public ArrayList<CustomerDto> getAllCustomers() throws Exception {
+      return customerService.getAllCustomers();
     }
     
 }

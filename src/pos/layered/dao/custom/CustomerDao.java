@@ -4,6 +4,7 @@
  */
 package pos.layered.dao.custom;
 
+import pos.layered.dao.CrudDao;
 import pos.layered.dao.SuperDao;
 import pos.layered.entity.CustomerEntity;
 
@@ -11,7 +12,5 @@ import pos.layered.entity.CustomerEntity;
  *
  * @author Dell
  */
-public interface CustomerDao extends SuperDao{
-
-    public Boolean addCustomer(CustomerEntity customerEntity) throws Exception;
+public interface CustomerDao extends CrudDao<CustomerEntity, String>{    
 }

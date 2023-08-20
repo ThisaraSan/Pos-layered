@@ -42,7 +42,7 @@
               <Component id="headerPanel" alignment="0" max="32767" attributes="0"/>
               <Component id="formPanel" alignment="0" max="32767" attributes="0"/>
               <Group type="102" alignment="0" attributes="0">
-                  <Component id="tablePanel" pref="0" max="32767" attributes="0"/>
+                  <Component id="tablePanel" pref="648" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
