@@ -13,24 +13,30 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import pos.layered.controller.CustomerController;
 import pos.layered.controller.ItemController;
+import pos.layered.controller.OrderController;
 import pos.layered.dto.CustomerDto;
 import pos.layered.dto.ItemDto;
 import pos.layered.dto.OrderDetailDto;
+import pos.layered.dto.OrderDto;
 
 /**
  *
  * @author Dell
  */
 public class OrderPanel extends javax.swing.JPanel {
+
     private List<OrderDetailDto> orderDetailDtos = new ArrayList<>();
     private CustomerController customerController;
     private ItemController itemController;
+    private OrderController orderController;
+
     /**
      * Creates new form OrderPanel
      */
     public OrderPanel() {
         customerController = new CustomerController();
         itemController = new ItemController();
+        orderController = new OrderController();
         initComponents();
         loadTable();
     }
@@ -254,11 +260,11 @@ public class OrderPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void searchCustButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchCustButtonActionPerformed
-       searchCustomer();
+        searchCustomer();
     }//GEN-LAST:event_searchCustButtonActionPerformed
 
     private void searchItemButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchItemButtonActionPerformed
-       searchItem(); 
+        searchItem();
     }//GEN-LAST:event_searchItemButtonActionPerformed
 
     private void addItemButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addItemButtonActionPerformed
@@ -266,7 +272,7 @@ public class OrderPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_addItemButtonActionPerformed
 
     private void placeOrderButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_placeOrderButtonActionPerformed
-        
+        placeOrder();
     }//GEN-LAST:event_placeOrderButtonActionPerformed
 
 
@@ -298,13 +304,13 @@ public class OrderPanel extends javax.swing.JPanel {
 
     private void loadTable() {
         String[] columns = {"Item Code", "Quantity", "Discount"};
-        DefaultTableModel dtm = new DefaultTableModel(columns, 0){
+        DefaultTableModel dtm = new DefaultTableModel(columns, 0) {
             @Override
             public boolean isCellEditable(int row, int column) {
                 return false;
-            }        
+            }
         };
-        itemTabel.setModel(dtm); 
+        itemTabel.setModel(dtm);
     }
 
     private void searchCustomer() {
@@ -343,15 +349,26 @@ public class OrderPanel extends javax.swing.JPanel {
         Object[] rowData = {od.getItemId(), od.getQty(), od.getDiscount()};
         DefaultTableModel dtm = (DefaultTableModel) itemTabel.getModel();
         dtm.addRow(rowData);
-        
+
         cleanItemData();
     }
-    
+
     private void cleanItemData() {
         itemIdText.setText("");
         discountText.setText("");
         qtyText.setText("");
         itemDataLabel.setText("");
-        
+
+    }
+
+    private void placeOrder() {
+        try {
+            OrderDto orderDto = new OrderDto(orderIdText.getText(), custIdText.getText(), orderDetailDtos);
+            String result = orderController.placeOrder(orderDto);
+            JOptionPane.showMessageDialog(this, result);
+        } catch (Exception ex) {
+            Logger.getLogger(OrderPanel.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+        }
     }
 }
